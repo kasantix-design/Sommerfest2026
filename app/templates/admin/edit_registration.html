@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+Rediger påmelding — Admin
+{% endblock %}
+
+{% block content %}
+
+<section class="form-card">
+
+    <h2>
+        Rediger påmelding
+    </h2>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.contact_name.label }}
+            {{ form.contact_name() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.phone.label }}
+            {{ form.phone() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.adults_count.label }}
+            {{ form.adults_count() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.children_under_10_count.label }}
+            {{ form.children_under_10_count() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.allergies.label }}
+            {{ form.allergies() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.overnight.label }}
+            {{ form.overnight() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.event_choice.label }}
+            {{ form.event_choice() }}
+        </div>
+
+        <div class="form-group">
+            <label>
+                {{ form.is_active() }}
+                Aktiv påmelding
+            </label>
+        </div>
+
+        {{ form.submit(class="pink-btn") }}
+    </form>
+
+</section>
+
+{% endblock %}

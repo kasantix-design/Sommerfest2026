@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+            Sommerfest 2026
+        {% endblock %}
+    </title>
+
+    <meta
+        name="description"
+        content="Sommerfest i hagen på Hop 04.07.2026"
+    >
+
+    <meta
+        name="theme-color"
+        content="#f4b5c8"
+    >
+
+    <link
+        rel="manifest"
+        href="{{ url_for('static', filename='manifest.json') }}"
+    >
+
+    <link
+        rel="icon"
+        href="{{ url_for('static', filename='icons/icon-192.png') }}"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="{{ url_for('static', filename='icons/icon-192.png') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register(
+                    "{{ url_for('static', filename='service-worker.js') }}"
+                );
+            });
+        }
+    </script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="light-mode">
+
+    <div class="sparkles"></div>
+
+    <header class="header">
+
+        <div class="top-bar">
+
+            <div class="logo-area">
+                <div class="logo-butterfly">🦋</div>
+
+                <div>
+                    <h1 class="site-title">
+                        Sommerfest 2026
+                    </h1>
+
+                    <p class="site-subtitle">
+                        Sommerfest i hagen på Hop
+                    </p>
+                </div>
+            </div>
+
+            <div class="top-actions">
+
+                <button
+                    id="theme-toggle"
+                    class="pink-btn small-btn"
+                    type="button"
+                >
+                    🌙 / ☀️
+                </button>
+
+                <button
+                    id="language-toggle"
+                    class="pink-btn small-btn"
+                    type="button"
+                >
+                    NO / EN
+                </button>
+
+            </div>
+
+        </div>
+
+        <nav class="nav-links">
+
+            <a
+                href="{{ url_for('main.index') }}"
+                class="pink-btn"
+            >
+                Forside
+            </a>
+
+            <a
+                href="{{ url_for('main.register') }}"
+                class="pink-btn"
+            >
+                Meld deg på
+            </a>
+
+            {% if current_user.is_authenticated %}
+
+                {% if current_user.is_admin %}
+
+                    <a
+                        href="{{ url_for('admin.dashboard') }}"
+                        class="pink-btn"
+                    >
+                        Adminpanel
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{{ url_for('main.my_registration') }}"
+                        class="pink-btn"
+                    >
+                        Min påmelding
+                    </a>
+
+                {% endif %}
+
+                <a
+                    href="{{ url_for('auth.logout') }}"
+                    class="pink-btn"
+                >
+                    Logg ut
+                </a>
+
+            {% else %}
+
+                <a
+                    href="{{ url_for('auth.login') }}"
+                    class="pink-btn"
+                >
+                    Logg inn
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+        <div class="butterflies">
+            <span class="butterfly">🦋</span>
+            <span class="butterfly">✨</span>
+            <span class="butterfly">🦋</span>
+        </div>
+
+    </header>
+
+    <main class="page-content">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+
+                <section class="flash-wrapper">
+
+                    {% for category, message in messages %}
+
+                        <div class="flash-message {{ category }}">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                </section>
+
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <footer class="footer">
+
+        <div class="footer-links">
+
+            <a href="{{ url_for('main.privacy') }}">
+                Personvern
+            </a>
+
+            <a href="{{ url_for('main.contact') }}">
+                Kontakt
+            </a>
+
+            <a href="{{ url_for('main.faq') }}">
+                FAQ
+            </a>
+
+        </div>
+
+        <p>
+            © Sommerfest 2026 — laget med glitter ✨
+        </p>
+
+    </footer>
+
+    <script>
+
+        const themeToggle = document.getElementById("theme-toggle");
+
+        themeToggle?.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            const isDark = document.body.classList.contains("dark-mode");
+
+            localStorage.setItem(
+                "theme",
+                isDark ? "dark" : "light"
+            );
+        });
+
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark-mode");
+        }
+
+        const languageToggle = document.getElementById("language-toggle");
+
+        languageToggle?.addEventListener("click", () => {
+
+            const currentLanguage =
+                localStorage.getItem("language") || "no";
+
+            const nextLanguage =
+                currentLanguage === "no" ? "en" : "no";
+
+            localStorage.setItem("language", nextLanguage);
+
+            location.reload();
+        });
+
+    </script>
+
+    {% block extra_scripts %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}
+Personvern — Sommerfest 2026
+{% endblock %}
+
+{% block content %}
+
+<section class="card">
+
+    <h2>
+        Personvern
+    </h2>
+
+    <p>
+        Vi lagrer kun informasjon som trengs for å administrere Sommerfest 2026:
+        navn, e-post, telefonnummer, antall voksne, antall barn, allergier,
+        ankomsttid, avreisetid, overnatting og arrangementvalg.
+    </p>
+
+    <p>
+        Opplysningene brukes bare til planlegging, kontakt og administrasjon av arrangementet.
+        De deles ikke med andre.
+    </p>
+
+    <p>
+        Du kan logge inn for å redigere eller melde deg av.
+        Ved avmelding beholdes statusen som avmeldt slik at arrangør har oversikt.
+    </p>
+
+    <form
+        method="POST"
+        action="{{ url_for('main.cancel_registration') }}"
+    >
+        {% if current_user.is_authenticated and not current_user.is_admin %}
+
+            <input
+                type="hidden"
+                name="confirm"
+                value="yes"
+            >
+
+            <button
+                type="submit"
+                class="pink-btn"
+            >
+                Slett / meld meg av
+            </button>
+
+        {% endif %}
+    </form>
+
+</section>
+
+<section class="card">
+
+    <h2>
+        Privacy
+    </h2>
+
+    <p>
+        We only store information needed to manage Summer Party 2026:
+        name, email, phone number, number of adults, number of children,
+        allergies, arrival time, departure time, overnight stay and event choice.
+    </p>
+
+    <p>
+        The information is only used for planning, contact and event administration.
+        It is not shared with others.
+    </p>
+
+</section>
+
+{% endblock %}

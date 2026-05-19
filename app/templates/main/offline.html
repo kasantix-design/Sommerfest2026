@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+Offline — Sommerfest 2026
+{% endblock %}
+
+{% block content %}
+
+<section class="card">
+
+    <div class="countdown-butterfly">
+        🦋✨
+    </div>
+
+    <h2>
+        Du er offline
+    </h2>
+
+    <p>
+        Appen fungerer fortsatt i offline-modus.
+    </p>
+
+    <p>
+        Når internett er tilbake,
+        vil appen automatisk synkronisere igjen.
+    </p>
+
+    <a
+        href="{{ url_for('main.index') }}"
+        class="pink-btn"
+    >
+        Til forsiden
+    </a>
+
+</section>
+
+{% endblock %}

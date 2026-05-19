@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}
+Meld deg på — Sommerfest 2026
+{% endblock %}
+
+{% block content %}
+
+<section class="form-card">
+
+    <h2>
+        Meld familien på
+    </h2>
+
+    <p>
+        Fyll inn én påmelding per familie.
+    </p>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.contact_name.label }}
+            {{ form.contact_name() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.phone.label }}
+            {{ form.phone() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.adults_count.label }}
+            {{ form.adults_count() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.children_under_10_count.label }}
+            {{ form.children_under_10_count() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.allergies.label }}
+            {{ form.allergies() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.arrival_time.label }}
+            {{ form.arrival_time() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.departure_time.label }}
+            {{ form.departure_time() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.overnight.label }}
+            {{ form.overnight() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.event_choice.label }}
+            {{ form.event_choice() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.avatar.label }}
+            {{ form.avatar() }}
+        </div>
+
+        {{ form.submit(class="pink-btn") }}
+    </form>
+
+</section>
+
+{% endblock %}

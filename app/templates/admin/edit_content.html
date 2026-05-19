@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Rediger innhold — Admin
+{% endblock %}
+
+{% block content %}
+
+<section class="form-card">
+
+    <h2>
+        Rediger innhold
+    </h2>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.title_no.label }}
+            {{ form.title_no() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.body_no.label }}
+            {{ form.body_no() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.title_en.label }}
+            {{ form.title_en() }}
+        </div>
+
+        <div class="form-group">
+            {{ form.body_en.label }}
+            {{ form.body_en() }}
+        </div>
+
+        {{ form.submit(class="pink-btn") }}
+    </form>
+
+</section>
+
+{% endblock %}

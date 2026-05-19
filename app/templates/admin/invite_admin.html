@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Inviter admin — Sommerfest 2026
+{% endblock %}
+
+{% block content %}
+
+<section class="form-card">
+
+    <h2>
+        Inviter ny admin
+    </h2>
+
+    <p>
+        Skriv inn e-postadressen til personen som skal få admin-tilgang.
+    </p>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email() }}
+        </div>
+
+        {{ form.submit(class="pink-btn") }}
+    </form>
+
+</section>
+
+{% endblock %}

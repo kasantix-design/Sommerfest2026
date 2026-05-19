@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %}
+Adminpanel — Sommerfest 2026
+{% endblock %}
+
+{% block content %}
+
+<section class="card">
+
+    <h2>
+        Adminpanel
+    </h2>
+
+    <div class="button-row">
+
+        <a
+            href="{{ url_for('admin.export_csv') }}"
+            class="pink-btn"
+        >
+            Eksporter CSV
+        </a>
+
+        <a
+            href="{{ url_for('admin.export_excel') }}"
+            class="pink-btn"
+        >
+            Eksporter Excel
+        </a>
+
+        <a
+            href="{{ url_for('admin.invite_admin') }}"
+            class="pink-btn"
+        >
+            Inviter admin
+        </a>
+
+        <a
+            href="{{ url_for('admin.edit_content', key='hero') }}"
+            class="pink-btn"
+        >
+            Rediger hero
+        </a>
+
+        <a
+            href="{{ url_for('admin.edit_content', key='practical') }}"
+            class="pink-btn"
+        >
+            Praktisk info
+        </a>
+
+    </div>
+
+</section>
+
+<section class="card">
+
+    <h2>
+        Filtrer påmeldinger
+    </h2>
+
+    <form method="GET">
+
+        <div class="form-group">
+            {{ filter_form.event_choice.label }}
+            {{ filter_form.event_choice() }}
+        </div>
+
+        <div class="form-group">
+            {{ filter_form.overnight.label }}
+            {{ filter_form.overnight() }}
+        </div>
+
+        <div class="form-group">
+            <label>
+                Allergier
+            </label>
+
+            <select name="allergies">
+                <option value="">Alle</option>
+                <option value="yes">Kun med allergier</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>
+                Barn under 10 år
+            </label>
+
+            <select name="children">
+                <option value="">Alle</option>
+                <option value="yes">Kun med barn under 10 år</option>
+            </select>
+        </div>
+
+        <button
+            type="submit"
+            class="pink-btn"
+        >
+            Filtrer
+        </button>
+
+    </form>
+
+</section>
+
+<section class="card">
+
+    <h2>
+        Påmeldte familier
+    </h2>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Kontaktperson</th>
+                    <th>E-post</th>
+                    <th>Telefon</th>
+                    <th>Voksne</th>
+                    <th>Barn</th>
+                    <th>Totalt</th>
+                    <th>Allergier</th>
+                    <th>Overnatting</th>
+                    <th>Arrangement</th>
+                    <th>Status</th>
+                    <th>Handling</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for registration in registrations %}
+
+                    <tr>
+                        <td>{{ registration.contact_name }}</td>
+                        <td>{{ registration.email }}</td>
+                        <td>{{ registration.phone }}</td>
+                        <td>{{ registration.adults_count }}</td>
+                        <td>{{ registration.children_under_10_count }}</td>
+                        <td>{{ registration.total_people }}</td>
+
+                        <td>
+                            {% if registration.allergies %}
+                                <span class="badge badge-warning">
+                                    {{ registration.allergies }}
+                                </span>
+                            {% else %}
+                                Ingen
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if registration.overnight == "home" %}
+                                Drar hjem
+                            {% elif registration.overnight == "self" %}
+                                Ordner selv
+                            {% elif registration.overnight == "need_help" %}
+                                Trenger hjelp
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if registration.event_choice == "day" %}
+                                <span class="badge badge-green">Grilling</span>
+                            {% elif registration.event_choice == "evening" %}
+                                <span class="badge badge-green">Kveld</span>
+                            {% elif registration.event_choice == "both" %}
+                                <span class="badge badge-green">Begge</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if registration.is_active %}
+                                <span class="badge badge-green">Aktiv</span>
+                            {% else %}
+                                <span class="badge badge-warning">Avmeldt</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <a
+                                href="{{ url_for('admin.edit_registration', registration_id=registration.id) }}"
+                                class="pink-btn small-btn"
+                            >
+                                Rediger
+                            </a>
+
+                            <form
+                                method="POST"
+                                action="{{ url_for('admin.delete_registration', registration_id=registration.id) }}"
+                                onsubmit="return confirm('Er du sikker på at du vil slette denne påmeldingen?');"
+                            >
+                                <button
+                                    type="submit"
+                                    class="pink-btn small-btn"
+                                >
+                                    Slett
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="11">
+                            Ingen påmeldinger funnet.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

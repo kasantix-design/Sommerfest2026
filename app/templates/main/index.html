@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sommerfest 2026
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="countdown-butterfly">
+        🦋✨
+    </div>
+
+    <h2>
+        {{ hero.title_no if hero else "Sommerfest i hagen på Hop" }}
+    </h2>
+
+    <p class="hero-text">
+        {{ hero.body_no if hero else "04.07.2026 — hero-tekst kommer her." }}
+    </p>
+
+    <div class="button-row">
+        <a
+            href="{{ url_for('main.register') }}"
+            class="pink-btn"
+        >
+            Meld familien på
+        </a>
+
+        <a
+            href="{{ url_for('auth.login') }}"
+            class="pink-btn"
+        >
+            Logg inn
+        </a>
+    </div>
+
+</section>
+
+<section class="card countdown-box">
+
+    <h2>
+        Nedtelling til grilling
+    </h2>
+
+    <div class="countdown-butterfly" id="growing-butterfly">
+        🦋
+    </div>
+
+    <div class="countdown-grid">
+        <div class="countdown-item">
+            <span id="days" class="countdown-number">0</span>
+            dager
+        </div>
+
+        <div class="countdown-item">
+            <span id="hours" class="countdown-number">0</span>
+            timer
+        </div>
+
+        <div class="countdown-item">
+            <span id="minutes" class="countdown-number">0</span>
+            minutter
+        </div>
+
+        <div class="countdown-item">
+            <span id="seconds" class="countdown-number">0</span>
+            sekunder
+        </div>
+    </div>
+
+</section>
+
+<section class="form-card">
+
+    <h2>
+        Påmelding
+    </h2>
+
+    <p>
+        Meld på én familie per registrering. Du kan velge grilling, kveldskos eller begge deler.
+    </p>
+
+    <a
+        href="{{ url_for('main.register') }}"
+        class="pink-btn"
+    >
+        Gå til påmeldingsskjema
+    </a>
+
+</section>
+
+<section class="card">
+
+    <h2>
+        {{ practical.title_no if practical else "Praktisk informasjon" }}
+    </h2>
+
+    <p>
+        {{ practical.body_no if practical else "Praktisk informasjon kan redigeres fra adminpanelet." }}
+    </p>
+
+    <ul>
+        <li>
+            Grilling: 04.07.2026 kl. 15:00–19:00
+        </li>
+
+        <li>
+            Kveldskos: 04.07.2026 kl. 20:00–00:00
+        </li>
+
+        <li>
+            Sted: Østre Hopsvegen 3a, 5232 Paradis
+        </li>
+    </ul>
+
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+
+<script>
+    const eventStart = new Date("2026-07-04T15:00:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = eventStart - now;
+
+        if (distance <= 0) {
+            document.querySelector(".countdown-box h2").textContent =
+                "Arrangementet er i gang!";
+
+            document.getElementById("days").textContent = "0";
+            document.getElementById("hours").textContent = "0";
+            document.getElementById("minutes").textContent = "0";
+            document.getElementById("seconds").textContent = "0";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+        const seconds = Math.floor(
+            (distance % (1000 * 60)) / 1000
+        );
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+
+        const butterfly = document.getElementById("growing-butterfly");
+        const maxDays = 365;
+        const progress = Math.max(0, Math.min(1, 1 - days / maxDays));
+        const scale = 1 + progress * 1.4;
+
+        butterfly.style.transform = `scale(${scale})`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
+
+{% endblock %}
