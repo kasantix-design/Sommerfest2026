@@ -459,7 +459,7 @@ th {
   }
 }
 .heart-frame {
-  width: min(280px, 70vw);
+  width: min(450px, 200vw);
   aspect-ratio: 1 / 1;
   margin: 1.5rem auto 2rem;
   overflow: hidden;
