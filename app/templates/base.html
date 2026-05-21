@@ -244,6 +244,16 @@
 
     {% block extra_scripts %}
     {% endblock %}
-
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <section class="flash-wrapper">
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </section>
+    {% endif %}
+{% endwith %}
 </body>
 </html>
