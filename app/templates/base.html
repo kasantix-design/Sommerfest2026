@@ -88,13 +88,15 @@
                     🌙 / ☀️
                 </button>
 
-                <button
-                    id="language-toggle"
-                    class="pink-btn small-btn"
-                    type="button"
-                >
-                    NO / EN
-                </button>
+                {% if lang == "no" %}
+         <a href="{{ url_for('set_language', language='en') }}" class="pink-btn small-btn">
+               English
+          </a>
+          {% else %}
+           <a href="{{ url_for('set_language', language='no') }}" class="pink-btn small-btn">
+             Norsk
+            </a>
+          {% endif %}
 
             </div>
 
