@@ -27,7 +27,33 @@ Sommerfest 2026
     <p class="hero-text">
         {{ hero.body_no if hero else "Lars og Reidun feirer 30 års bryllupsdag. Bak oss har vi flere runde dager som ikke ble markert. På toppen er vi velsigent med Sara-Marie som feirer 30 år i år. " }}
     </p>
+<section class="card">
 
+    <h2>
+        {{ practical.title_no if practical else "Praktisk informasjon" }}
+        
+    </h2>
+
+    <p>
+        {{ practical.body_no if practical else "Noen ord om det praktiske:" }}
+    </p>
+
+    <ul>
+        <li>
+            Grilling: 04.07.2026 kl. 15:00–19:00
+        </li>
+
+        <li>
+            Kveldskos: 04.07.2026 kl. 20:00–00:00
+        </li>
+
+        <li>
+            Sted: Østre Hopsvegen 3a, 5232 Paradis
+        </li>
+    </ul>
+
+</section>
+    
     <div class="button-row">
         <a
             href="{{ url_for('main.register') }}"
@@ -45,6 +71,7 @@ Sommerfest 2026
     </div>
 
 </section>
+
 
 <section class="card countdown-box">
 
@@ -99,31 +126,6 @@ Sommerfest 2026
 
 </section>
 
-<section class="card">
-
-    <h2>
-        {{ practical.title_no if practical else "Praktisk informasjon" }}
-    </h2>
-
-    <p>
-        {{ practical.body_no if practical else "Praktisk informasjon kan redigeres fra adminpanelet." }}
-    </p>
-
-    <ul>
-        <li>
-            Grilling: 04.07.2026 kl. 15:00–19:00
-        </li>
-
-        <li>
-            Kveldskos: 04.07.2026 kl. 20:00–00:00
-        </li>
-
-        <li>
-            Sted: Østre Hopsvegen 3a, 5232 Paradis
-        </li>
-    </ul>
-
-</section>
 
 {% endblock %}
 
