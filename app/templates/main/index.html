@@ -16,18 +16,22 @@ Sommerfest 2026
         {{ hero.title_no if hero else "Sommerfest i hagen på Hop 04.Juli 2026" }}
     </h2>
 
-    <div class="heart-image">
-       <div class="heart-frame"> 
-    <img src="{{ url_for('static', filename='images/IMG_9407.jpg') }}" alt="L+R=sant">
-    </div>
-
+   <div class="heart-frame">
+    <img
+        src="{{ url_for('static', filename='images/IMG_9407.jpg') }}"
+        alt="Lars og Reidun"
+    >
 </div>
+
 
     
     <p class="hero-text">
         {{ hero.body_no if hero else "Lars og Reidun feirer 30 års bryllupsdag. Bak oss har vi flere runde dager som ikke ble markert. På toppen er vi velsigent med Sara-Marie som feirer 30 år i år. " }}
     </p>
-<section class="card">
+
+ </section>
+
+    <section class="card">
 
     <h2>
         {{ practical.title_no if practical else "Praktisk informasjon" }}
