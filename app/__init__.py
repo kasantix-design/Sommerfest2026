@@ -38,4 +38,4 @@ def create_app(config_class=Config):
         return redirect(request.referrer or url_for("main.index"))
 
     return app
-``
+
