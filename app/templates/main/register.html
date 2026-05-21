@@ -18,6 +18,18 @@ Meld deg på — Sommerfest 2026
 
     <form method="POST">
         {{ form.hidden_tag() }}
+        {% if form.errors %}
+    <div class="flash-message danger">
+        <strong>Skjemaet har feil:</strong>
+        <ul>
+            {% for field, errors in form.errors.items() %}
+                {% for error in errors %}
+                    <li>{{ field }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 
         <div class="form-group">
             {{ form.contact_name.label }}
