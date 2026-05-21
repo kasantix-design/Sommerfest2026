@@ -24,4 +24,18 @@ def create_app(config_class=Config):
 
     register_cli(app)
 
+        @app.context_processor
+    def inject_language():
+        return {
+            "lang": session.get("lang", "no")
+        }
+
+    @app.route("/set-language/<language>")
+    def set_language(language):
+        if language not in ["no", "en"]:
+            language = "no"
+
+        session["lang"] = language
+        return redirect(request.referrer or url_for("main.index"))
+
     return app
