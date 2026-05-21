@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user
-
+from datetime import datetime
 from app.extensions import db
 from app.main.forms import RegistrationForm
 from app.models import Registration, SiteContent, User
@@ -103,7 +103,7 @@ def edit_registration():
     form.password.validators = []
     form.confirm_password.validators = []
 
-    if request.method == "GET":
+        if request.method == "GET":
         form.contact_name.data = registration.contact_name
         form.email.data = registration.email
         form.phone.data = registration.phone
@@ -114,6 +114,17 @@ def edit_registration():
         form.event_choice.data = registration.event_choice
         form.avatar.data = current_user.avatar
 
+        if registration.arrival_time:
+            form.arrival_time.data = datetime.strptime(
+                registration.arrival_time,
+                "%H:%M",
+            ).time()
+
+        if registration.departure_time:
+            form.departure_time.data = datetime.strptime(
+                registration.departure_time,
+                "%H:%M",
+            ).time()
     if form.validate_on_submit():
         email = form.email.data.lower().strip()
 
