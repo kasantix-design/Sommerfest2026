@@ -197,18 +197,22 @@ body.dark-mode .form-card {
 .hero {
   min-height: 280px;
   text-align: center;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #fff;
+  text-shadow: 0 0 10px #ff9fc5, 0 0 25px #ffcee1;
 }
 
 .hero h2 {
-  font-size: clamp(2rem, 5vw, 4rem);
-  margin-top: 0;
-}
-
-.hero-text {
   color: #fffefb;
   font-size: 1.35rem;
   font-weight: 700;
   text-shadow: 0 0 8px rgba(0,0,0,0.35);
+
+}
+
+.hero-text {
+    font-size: clamp(2rem, 5vw, 4rem);
+  margin-top: 0;
 }
 
 /* --- NEDTELLING --- */
