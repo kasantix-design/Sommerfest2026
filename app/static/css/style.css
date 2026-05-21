@@ -432,36 +432,37 @@ th {
   }
 }
 
-/* Sørger for at alt i hero er sentrert */
-.hero {
+/*sentrert i ramme */
+hero {
     text-align: center;
 }
 
-/* Container for bildet */
+/* Container */
 .heart-image {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
-/* Selve bildet i hjerteform */
-.heart-image img {
-    width: 220px;
-    height: 220px;
+/* Rosa ramme */
+.heart-frame {
+    width: 280px;
+    height: 260px;
+    padding: 8px; /* tykkelse på rammen */
+    background: #ff7fa3;
+    
+    clip-path: path("M140 240 L0 110 A70 70 0 1 1 140 50 A70 70 0 1 1 280 110 Z");
+}
+
+/* Bildet inni */
+.heart-frame img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-
-    /* Hjerteform */
-    clip-path: path("M110 200 L0 90 A55 55 0 1 1 110 40 A55 55 0 1 1 220 90 Z");
-
-    /* Litt styling (kan fjernes om du vil) */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    border: 4px solid #ff7fa3;
-    transition: transform 0.3s ease;
+    
+    clip-path: path("M140 240 L0 110 A70 70 0 1 1 140 50 A70 70 0 1 1 280 110 Z");
+    
+    display: block;
 }
 
-/* Litt liv når man hover */
-.heart-image img:hover {
-    transform: scale(1.05);
-}
 
