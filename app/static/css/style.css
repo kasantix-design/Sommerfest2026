@@ -459,17 +459,39 @@ th {
   }
 }
 .heart-frame {
-  width: min(450px, 200vw);
-  aspect-ratio: 1 / 1;
-  margin: 1.5rem auto 2rem;
-  overflow: hidden;
-  clip-path: path("M 140 255 C 50 175 0 125 0 70 C 0 25 35 0 72 0 C 100 0 125 16 140 42 C 155 16 180 0 208 0 C 245 0 280 25 280 70 C 280 125 230 175 140 255 Z");
-  filter: drop-shadow(0 0 14px #ffb6d5);
+    width: 220px;
+    height: 200px;
+    margin: 2rem auto;
+
+    position: relative;
+
+    clip-path: path(
+        "M110 200
+        C20 130 0 80 0 40
+        C0 0 40 0 55 30
+        C70 0 110 0 110 40
+        C110 0 150 0 165 30
+        C180 0 220 0 220 40
+        C220 80 200 130 110 200"
+    );
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 25px rgba(255, 105, 180, 0.25);
+
+    background: #fff;
 }
 
 .heart-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center 35%;
+
+    display: block;
+
+    transform: scale(1.15);
 }
