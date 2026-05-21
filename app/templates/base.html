@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -29,16 +31,6 @@
     >
 
     <link
-        rel="icon"
-        href="{{ url_for('static', filename='icons/icon-192.png') }}"
-    >
-
-    <link
-        rel="apple-touch-icon"
-        href="{{ url_for('static', filename='icons/icon-192.png') }}"
-    >
-
-    <link
         rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}"
     >
@@ -53,10 +45,11 @@
         }
     </script>
 
-    {% block extra_head %}{% endblock %}
+    {% block extra_head %}
+    {% endblock %}
 </head>
 
-<body class="light-mode">
+<body>
 
     <div class="sparkles"></div>
 
@@ -65,17 +58,29 @@
         <div class="top-bar">
 
             <div class="logo-area">
-                <div class="logo-butterfly">🦋</div>
+
+                <div class="logo-butterfly">
+                    🦋
+                </div>
 
                 <div>
+
                     <h1 class="site-title">
                         Sommerfest 2026
                     </h1>
 
                     <p class="site-subtitle">
-                        Sommerfest i hagen på Hop
+
+                        {% if lang == "en" %}
+                            Summer party in the garden at Hop
+                        {% else %}
+                            Sommerfest i hagen på Hop
+                        {% endif %}
+
                     </p>
+
                 </div>
+
             </div>
 
             <div class="top-actions">
@@ -89,14 +94,24 @@
                 </button>
 
                 {% if lang == "no" %}
-         <a href="{{ url_for('set_language', language='en') }}" class="pink-btn small-btn">
-               English
-          </a>
-          {% else %}
-           <a href="{{ url_for('set_language', language='no') }}" class="pink-btn small-btn">
-             Norsk
-            </a>
-          {% endif %}
+
+                    <a
+                        href="{{ url_for('set_language', language='en') }}"
+                        class="pink-btn small-btn"
+                    >
+                        English
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{{ url_for('set_language', language='no') }}"
+                        class="pink-btn small-btn"
+                    >
+                        Norsk
+                    </a>
+
+                {% endif %}
 
             </div>
 
@@ -108,14 +123,14 @@
                 href="{{ url_for('main.index') }}"
                 class="pink-btn"
             >
-                Forside
+                {{ "Home" if lang == "en" else "Forside" }}
             </a>
 
             <a
                 href="{{ url_for('main.register') }}"
                 class="pink-btn"
             >
-                Meld deg på
+                {{ "Register" if lang == "en" else "Meld deg på" }}
             </a>
 
             {% if current_user.is_authenticated %}
@@ -126,7 +141,7 @@
                         href="{{ url_for('admin.dashboard') }}"
                         class="pink-btn"
                     >
-                        Adminpanel
+                        {{ "Admin panel" if lang == "en" else "Adminpanel" }}
                     </a>
 
                 {% else %}
@@ -135,7 +150,7 @@
                         href="{{ url_for('main.my_registration') }}"
                         class="pink-btn"
                     >
-                        Min påmelding
+                        {{ "My registration" if lang == "en" else "Min påmelding" }}
                     </a>
 
                 {% endif %}
@@ -144,7 +159,7 @@
                     href="{{ url_for('auth.logout') }}"
                     class="pink-btn"
                 >
-                    Logg ut
+                    {{ "Logout" if lang == "en" else "Logg ut" }}
                 </a>
 
             {% else %}
@@ -153,7 +168,7 @@
                     href="{{ url_for('auth.login') }}"
                     class="pink-btn"
                 >
-                    Logg inn
+                    {{ "Login" if lang == "en" else "Logg inn" }}
                 </a>
 
             {% endif %}
@@ -171,6 +186,7 @@
     <main class="page-content">
 
         {% with messages = get_flashed_messages(with_categories=true) %}
+
             {% if messages %}
 
                 <section class="flash-wrapper">
@@ -186,6 +202,7 @@
                 </section>
 
             {% endif %}
+
         {% endwith %}
 
         {% block content %}
@@ -198,11 +215,11 @@
         <div class="footer-links">
 
             <a href="{{ url_for('main.privacy') }}">
-                Personvern
+                {{ "Privacy" if lang == "en" else "Personvern" }}
             </a>
 
             <a href="{{ url_for('main.contact') }}">
-                Kontakt
+                {{ "Contact" if lang == "en" else "Kontakt" }}
             </a>
 
             <a href="{{ url_for('main.faq') }}">
@@ -212,19 +229,28 @@
         </div>
 
         <p>
-            © Sommerfest 2026 — laget med glitter ✨
+
+            {% if lang == "en" %}
+                © Sommerfest 2026 — made with glitter ✨
+            {% else %}
+                © Sommerfest 2026 — laget med glitter ✨
+            {% endif %}
+
         </p>
 
     </footer>
 
     <script>
 
-        const themeToggle = document.getElementById("theme-toggle");
+        const themeToggle =
+            document.getElementById("theme-toggle");
 
         themeToggle?.addEventListener("click", () => {
+
             document.body.classList.toggle("dark-mode");
 
-            const isDark = document.body.classList.contains("dark-mode");
+            const isDark =
+                document.body.classList.contains("dark-mode");
 
             localStorage.setItem(
                 "theme",
@@ -232,28 +258,17 @@
             );
         });
 
-        const savedTheme = localStorage.getItem("theme");
+        const savedTheme =
+            localStorage.getItem("theme");
 
         if (savedTheme === "dark") {
             document.body.classList.add("dark-mode");
         }
 
-       
-
     </script>
 
     {% block extra_scripts %}
     {% endblock %}
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <section class="flash-wrapper">
-            {% for category, message in messages %}
-                <div class="flash-message {{ category }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </section>
-    {% endif %}
-{% endwith %}
+
 </body>
 </html>
