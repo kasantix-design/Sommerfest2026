@@ -13,74 +13,81 @@ Sommerfest 2026
     </div>
 
     <h2>
-        {{ hero.title_no if hero else "Sommerfest i hagen på Hop 04.Juli 2026" }}
+        {% if lang == "en" %}
+            {{ hero.title_en if hero else "Summer party in the garden at Hop — 04 July 2026" }}
+        {% else %}
+            {{ hero.title_no if hero else "Sommerfest i hagen på Hop 04. juli 2026" }}
+        {% endif %}
     </h2>
 
-   <div class="heart-frame">
-    <img
-        src="{{ url_for('static', filename='images/IMG_9407.jpg') }}"
-        alt="Lars og Reidun"
-    >
-</div>
-
-
-    
-    <p class="hero-text">
-        {{ hero.body_no if hero else "Lars og Reidun feirer 30 års bryllupsdag. Bak oss har vi flere runde dager som ikke ble markert. På toppen er vi velsigent med Sara-Marie som feirer 30 år i år. " }}
-    </p>
-
- </section>
-
-    <section class="card">
-
-    <h2>
-        {{ practical.title_no if practical else "Praktisk informasjon" }}
-        
-    </h2>
-
-    <p>
-        {{ practical.body_no if practical else "Noen ord om det praktiske:" }}
-    </p>
-
-    <ul>
-        <li>
-            Grilling: 04.07.2026 kl. 15:00–19:00
-        </li>
-
-        <li>
-            Kveldskos: 04.07.2026 kl. 20:00–00:00
-        </li>
-
-        <li>
-            Sted: Østre Hopsvegen 3a, 5232 Paradis
-        </li>
-    </ul>
-
-</section>
-    
-    <div class="button-row">
-        <a
-            href="{{ url_for('main.register') }}"
-            class="pink-btn"
+    <div class="heart-frame">
+        <img
+            src="{{ url_for('static', filename='images/IMG_9407.jpg') }}"
+            alt="Lars og Reidun"
         >
-            Meld familien på
+    </div>
+
+    <p class="hero-text">
+        {% if lang == "en" %}
+            {{ hero.body_en if hero else "Lars and Reidun are celebrating their 30th wedding anniversary. We also have several big birthdays to celebrate, including Sara-Marie turning 30 this year." }}
+        {% else %}
+            {{ hero.body_no if hero else "Lars og Reidun feirer 30 års bryllupsdag. Bak oss har vi flere runde dager som ikke ble markert. På toppen er vi velsignet med Sara-Marie som feirer 30 år i år." }}
+        {% endif %}
+    </p>
+
+    <div class="button-row">
+        <a href="{{ url_for('main.register') }}" class="pink-btn">
+            {{ "Register the family" if lang == "en" else "Meld familien på" }}
         </a>
 
-        <a
-            href="{{ url_for('auth.login') }}"
-            class="pink-btn"
-        >
-            Logg inn
+        <a href="{{ url_for('auth.login') }}" class="pink-btn">
+            {{ "Login" if lang == "en" else "Logg inn" }}
         </a>
     </div>
 
 </section>
 
+<section class="card">
+
+    <h2>
+        {% if lang == "en" %}
+            {{ practical.title_en if practical else "Practical information" }}
+        {% else %}
+            {{ practical.title_no if practical else "Praktisk informasjon" }}
+        {% endif %}
+    </h2>
+
+    <p>
+        {% if lang == "en" %}
+            {{ practical.body_en if practical else "Some practical information:" }}
+        {% else %}
+            {{ practical.body_no if practical else "Noen ord om det praktiske:" }}
+        {% endif %}
+    </p>
+
+    <ul>
+        <li>
+            {{ "Barbecue" if lang == "en" else "Grilling" }}:
+            04.07.2026 kl. 15:00–19:00
+        </li>
+
+        <li>
+            {{ "Evening gathering" if lang == "en" else "Kveldskos" }}:
+            04.07.2026 kl. 20:00–00:00
+        </li>
+
+        <li>
+            {{ "Location" if lang == "en" else "Sted" }}:
+            Østre Hopsvegen 3a, 5232 Paradis
+        </li>
+    </ul>
+
+</section>
 
 <section class="card countdown-box">
 
     <h2>
-        Nedtelling til grilling
+        {{ "Countdown to barbecue" if lang == "en" else "Nedtelling til grilling" }}
     </h2>
 
     <div class="countdown-butterfly" id="growing-butterfly">
@@ -90,22 +97,22 @@ Sommerfest 2026
     <div class="countdown-grid">
         <div class="countdown-item">
             <span id="days" class="countdown-number">0</span>
-            dager
+            {{ "days" if lang == "en" else "dager" }}
         </div>
 
         <div class="countdown-item">
             <span id="hours" class="countdown-number">0</span>
-            timer
+            {{ "hours" if lang == "en" else "timer" }}
         </div>
 
         <div class="countdown-item">
             <span id="minutes" class="countdown-number">0</span>
-            minutter
+            {{ "minutes" if lang == "en" else "minutter" }}
         </div>
 
         <div class="countdown-item">
             <span id="seconds" class="countdown-number">0</span>
-            sekunder
+            {{ "seconds" if lang == "en" else "sekunder" }}
         </div>
     </div>
 
@@ -114,22 +121,22 @@ Sommerfest 2026
 <section class="form-card">
 
     <h2>
-        Påmelding
+        {{ "Registration" if lang == "en" else "Påmelding" }}
     </h2>
 
     <p>
-        Meld på én familie per registrering. Du kan velge grilling, kveldskos eller begge deler.
+        {% if lang == "en" %}
+            Register one family per registration. You can choose barbecue, evening gathering, or both.
+        {% else %}
+            Meld på én familie per registrering. Du kan velge grilling, kveldskos eller begge deler.
+        {% endif %}
     </p>
 
-    <a
-        href="{{ url_for('main.register') }}"
-        class="pink-btn"
-    >
-        Gå til påmeldingsskjema
+    <a href="{{ url_for('main.register') }}" class="pink-btn">
+        {{ "Go to registration form" if lang == "en" else "Gå til påmeldingsskjema" }}
     </a>
 
 </section>
-
 
 {% endblock %}
 
@@ -137,6 +144,7 @@ Sommerfest 2026
 
 <script>
     const eventStart = new Date("2026-07-04T15:00:00").getTime();
+    const currentLanguage = "{{ lang }}";
 
     function updateCountdown() {
         const now = new Date().getTime();
@@ -144,7 +152,9 @@ Sommerfest 2026
 
         if (distance <= 0) {
             document.querySelector(".countdown-box h2").textContent =
-                "Arrangementet er i gang!";
+                currentLanguage === "en"
+                    ? "The event has started!"
+                    : "Arrangementet er i gang!";
 
             document.getElementById("days").textContent = "0";
             document.getElementById("hours").textContent = "0";
@@ -154,14 +164,17 @@ Sommerfest 2026
         }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
         const hours = Math.floor(
             (distance % (1000 * 60 * 60 * 24)) /
             (1000 * 60 * 60)
         );
+
         const minutes = Math.floor(
             (distance % (1000 * 60 * 60)) /
             (1000 * 60)
         );
+
         const seconds = Math.floor(
             (distance % (1000 * 60)) / 1000
         );
