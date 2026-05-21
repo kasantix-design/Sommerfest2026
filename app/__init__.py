@@ -1,8 +1,7 @@
-from flask import Flask
-
+from flask import Flask, session, request, redirect, url_for
 from app.config import Config
 from app.extensions import db, login_manager, mail, migrate
-from flask import Flask, session, request, redirect, url_for
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -24,7 +23,7 @@ def create_app(config_class=Config):
 
     register_cli(app)
 
-        @app.context_processor
+    @app.context_processor
     def inject_language():
         return {
             "lang": session.get("lang", "no")
@@ -39,3 +38,4 @@ def create_app(config_class=Config):
         return redirect(request.referrer or url_for("main.index"))
 
     return app
+``
