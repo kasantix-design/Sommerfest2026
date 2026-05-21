@@ -1,7 +1,7 @@
 venv/
 __pycache__/
-*.pyc
+.pyc
 .env
 exports/
-*.sqlite3
-*.db
+.sqlite3
+.db
