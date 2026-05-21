@@ -238,20 +238,7 @@
             document.body.classList.add("dark-mode");
         }
 
-        const languageToggle = document.getElementById("language-toggle");
-
-        languageToggle?.addEventListener("click", () => {
-
-            const currentLanguage =
-                localStorage.getItem("language") || "no";
-
-            const nextLanguage =
-                currentLanguage === "no" ? "en" : "no";
-
-            localStorage.setItem("language", nextLanguage);
-
-            location.reload();
-        });
+       
 
     </script>
 
