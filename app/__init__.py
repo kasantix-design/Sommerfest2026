@@ -1,6 +1,7 @@
 from flask import Flask, session, request, redirect, url_for
 from app.config import Config
 from app.extensions import db, login_manager, mail, migrate
+from app.cli import register_cli
 
 
 def create_app(config_class=Config):
