@@ -55,9 +55,9 @@ class RegistrationForm(FlaskForm):
     )
 
     children_under_10_count = IntegerField(
-        "Barn under 10 år",
-        validators=[DataRequired(), NumberRange(min=0, max=50)],
-        default=0,
+    "Barn under 10 år",
+    validators=[NumberRange(min=0, max=50)],
+    default=0,
     )
 
     allergies = TextAreaField(
