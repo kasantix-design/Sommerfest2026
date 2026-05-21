@@ -13,11 +13,15 @@ Sommerfest 2026
     </div>
 
     <h2>
-        {{ hero.title_no if hero else "Sommerfest i hagen på Hop" }}
+        {{ hero.title_no if hero else "Sommerfest i hagen på Hop 04.Juli 2026" }}
     </h2>
 
+    <div class="heart-image">
+    <img src="{{ url_for('static', filename='images/familie.jpg') }}" alt="Familiebilde">
+    </div>
+
     <p class="hero-text">
-        {{ hero.body_no if hero else "04.07.2026 — hero-tekst kommer her." }}
+        {{ hero.body_no if hero else "Lars og Reidun feirer 30 års bryllupsdag. Bak oss har vi flere runde dager som ikke ble markert. På toppen er vi velsigent med Sara-Marie som feirer 30 år i år. " }}
     </p>
 
     <div class="button-row">
