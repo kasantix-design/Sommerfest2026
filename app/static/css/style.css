@@ -432,6 +432,44 @@ th {
   box-shadow: 0 10px 40px rgba(0,0,0,0.25);
 }
 
+.heart-frame {
+    width: 220px;
+    height: 200px;
+    margin: 2rem auto;
+
+    position: relative;
+
+    clip-path: path(
+        "M110 200
+        C20 130 0 80 0 40
+        C0 0 40 0 55 30
+        C70 0 110 0 110 40
+        C110 0 150 0 165 30
+        C180 0 220 0 220 40
+        C220 80 200 130 110 200"
+    );
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 25px rgba(255, 105, 180, 0.25);
+
+    background: #fff;
+}
+
+.heart-frame img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center 35%;
+
+    display: block;
+
+    transform: scale(1.15);
+}
+
 @media (max-width: 720px) {
 
   body {
@@ -480,40 +518,4 @@ th {
     grid-template-columns: repeat(2, 1fr);
   }
 
-.heart-frame {
-    width: 220px;
-    height: 200px;
-    margin: 2rem auto;
 
-    position: relative;
-
-    clip-path: path(
-        "M110 200
-        C20 130 0 80 0 40
-        C0 0 40 0 55 30
-        C70 0 110 0 110 40
-        C110 0 150 0 165 30
-        C180 0 220 0 220 40
-        C220 80 200 130 110 200"
-    );
-
-    overflow: hidden;
-
-    box-shadow:
-        0 10px 25px rgba(255, 105, 180, 0.25);
-
-    background: #fff;
-}
-
-.heart-frame img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    object-position: center 35%;
-
-    display: block;
-
-    transform: scale(1.15);
-}
