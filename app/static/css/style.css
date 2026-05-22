@@ -581,4 +581,34 @@ th {
   }
 
 }
-
+@media (max-width: 720px) {
+  body,
+  body *,
+  .hero,
+  .hero *,
+  .card,
+  .card *,
+  .form-card,
+  .form-card *,
+  .footer,
+  .footer *,
+  .countdown-box,
+  .countdown-box *,
+  .countdown-item,
+  .countdown-number,
+  h1,
+  h2,
+  h3,
+  p,
+  li,
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  label {
+    font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+    font-style: normal !important;
+  }
+}
+  
