@@ -24,7 +24,7 @@ body {
     ),
     url("../images/papir.jpg") center/cover repeat;
 
-  font-family: "Comic Sans MS", sans-serif;
+  font-family: "Atkinson Hyperlegible", sans-serif;
 
   color: var(--text);
 }
@@ -534,7 +534,7 @@ textarea {
 @media (max-width: 720px) {
 
   * {
-    font-family: "Comic Sans MS", sans-serif !important;
+    font-family: "Atkinson Hyperlegible", sans-serif; !important;
     font-style: normal !important;
   }
 
