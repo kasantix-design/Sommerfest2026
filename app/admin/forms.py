@@ -67,15 +67,7 @@ class AdminRegistrationEditForm(FlaskForm):
         ],
     )
 
-    overnight = SelectField(
-        "Overnatting",
-        validators=[DataRequired()],
-        choices=[
-            ("home", "Drar hjem"),
-            ("self", "Ordner selv"),
-            ("need_help", "Trenger at dere ordner"),
-        ],
-    )
+  
 
     event_choice = SelectField(
         "Arrangement",
