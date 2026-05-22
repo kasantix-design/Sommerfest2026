@@ -95,20 +95,18 @@ body.dark-mode {
 }
 
 .pink-btn {
-  background: var(--pink);
-  padding: 0.85rem 1.6rem;
-  margin: 0.35rem;
-  border: none;
-  border-radius: 40px;
-  font-size: 1.05rem;
-  font-weight: bold;
-  cursor: pointer;
-  color: white;
-  box-shadow: 0 0 10px #ffd9e4, 0 0 20px #ffe3ed;
-  transition: 0.25s ease;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  max-width: 280px;
+
+  margin: 0 auto;
+
+  padding: 0.9rem 1.2rem;
+
+  box-sizing: border-box;
 }
 
 .pink-btn:hover,
@@ -496,11 +494,17 @@ th {
     font-family: "Comic Sans MS", cursive;
   }
 
+  .button-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   .pink-btn {
     width: 100%;
-    max-width: 320px;
-    font-family: "Comic Sans MS", cursive;
+    max-width: 260px;
   }
+
 
   .top-bar,
   .logo-area {
