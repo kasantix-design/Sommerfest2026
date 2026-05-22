@@ -210,33 +210,6 @@
 
     </main>
 
-    <footer class="footer">
-
-        <div class="footer-links">
-
-            <a href="{{ url_for('main.privacy') }}">
-                {{ "Privacy" if lang == "en" else "Personvern" }}
-            </a>
-
-            <a href="{{ url_for('main.contact') }}">
-                {{ "Contact" if lang == "en" else "Kontakt" }}
-            </a>
-
-            <a href="{{ url_for('main.faq') }}">
-                FAQ
-            </a>
-
-        </div>
-
-        <p>
-
-            {% if lang == "en" %}
-                © Sommerfest 2026 — made with glitter ✨
-            {% else %}
-                © Sommerfest 2026 — laget med glitter ✨
-            {% endif %}
-
-        </p>
 
     </footer>
 <footer class="footer">
@@ -280,7 +253,7 @@
 
             </div>
 
-            <div class="map-wrapper">
+         <div class="map-wrapper">
 
                 <iframe
                     src="https://www.google.com/maps?q=Østre+Hopsvegen+3a,+5232+Paradis&output=embed"
@@ -294,8 +267,23 @@
                 </iframe>
 
             </div>
+        <div class="footer-links">
+
+            <a href="{{ url_for('main.privacy') }}">
+                {{ "Privacy" if lang == "en" else "Personvern" }}
+            </a>
+
+            <a href="{{ url_for('main.contact') }}">
+                {{ "Contact" if lang == "en" else "Kontakt" }}
+            </a>
+
+            <a href="{{ url_for('main.faq') }}">
+                FAQ
+            </a>
 
         </div>
+
+    
 
         <div class="footer-bottom">
 
